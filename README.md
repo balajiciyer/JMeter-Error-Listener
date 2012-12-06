@@ -1,6 +1,9 @@
 JMeter-Error-Listener
 =====================
 
+Purpose
+-------
+
 The purpose of developing Error listener plugin is to capture error information and the instantaneous state of JMeter during performance testing for an in depth analysis. Error Listener provides additional features, flexibility and control over JMeter state.
 
 - When the error occurs, the existing (Save Responses to File) listener simply logs the response to file from the perspective  of errors. The number of files corresponds to number of errors even if the response is same. Hence, too many files to deal   with
@@ -10,17 +13,17 @@ The purpose of developing Error listener plugin is to capture error information 
 To address these concerns,Error Listener was created.
 
 Minimum Requirements
-====================
+--------------------
 You need to run JMeter 2.4 or above with a JRE 1.6 or above to use the plugin
  
 How to deploy the plugin
-========================
+------------------------
 
 Copy the ErrorListener.jar file inside JMETER_INSTALL_DIR/lib/ and JMETER_INSTALL_DIR/lib/ext directories.
 Now you can restart JMeter and view Error Listener in Listener’s group.
 
 Usage
-=====
+-----
 
 Refer the doc ~/doc/InstallationAndUsage.doc or ~/doc/Usage.jpg
 
