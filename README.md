@@ -1,5 +1,5 @@
-JMeter-Error-Listener
-=====================
+Mindtree JMeter-Error-Listener
+==============================
 
 Purpose
 -------
