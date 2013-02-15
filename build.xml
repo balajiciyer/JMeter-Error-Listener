@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="ErrorListener" default="main" basedir="D:\Workspace\ErrorListener">
+<project name="ErrorListener" default="main" basedir=".">
 	<target name ="main" depends="init , cleanup, createfolders, createerrorlistener" description="Create Error Listener jar">      	
   	</target>
 	<target name ="init">
