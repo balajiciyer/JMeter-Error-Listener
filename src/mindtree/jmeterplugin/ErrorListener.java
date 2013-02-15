@@ -20,14 +20,11 @@ package mindtree.jmeterplugin;
 
 import java.io.File;
 import java.io.Serializable;
-import java.rmi.RemoteException;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.jmeter.engine.event.LoopIterationEvent;
-import org.apache.jmeter.samplers.RemoteSampleListener;
 import org.apache.jmeter.samplers.SampleEvent;
 import org.apache.jmeter.samplers.SampleListener;
 import org.apache.jmeter.samplers.SampleResult;
@@ -227,7 +224,7 @@ public class ErrorListener extends AbstractTestElement implements Serializable, 
 		}
 	}
 
-	
+
 
 	/**
 	 * Recurse the whole (sub)result hierarchy.
@@ -274,7 +271,7 @@ public class ErrorListener extends AbstractTestElement implements Serializable, 
 	 * {@inheritDoc}
 	 */
 	public void sampleStarted(SampleEvent e) {
-		
+
 	}
 
 	/**
@@ -301,16 +298,14 @@ public class ErrorListener extends AbstractTestElement implements Serializable, 
 
 	@Override
 	public void testStarted() {
-		System.out.println("Error Listener Initialized");
 		initialize();
-		
+
 	}
 
 	@Override
 	public void testStarted(String arg0) {
-	System.out.println("Error Listener Initialized");
-	initialize();
-		
+		initialize();
+
 	}
 
 	/*@Override
