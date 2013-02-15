@@ -119,7 +119,6 @@ public class ErrorListenerGui extends AbstractListenerGui implements Serializabl
 
 	public ErrorListenerGui() {
 		super();
-		
 		init();  
 	}
 
@@ -134,7 +133,6 @@ public class ErrorListenerGui extends AbstractListenerGui implements Serializabl
 	 *            component.
 	 */
 	public ErrorListenerGui(boolean displayName) {
-		
 		init();
 	}
 
@@ -148,7 +146,6 @@ public class ErrorListenerGui extends AbstractListenerGui implements Serializabl
 	@Override
 	public String getStaticLabel() {
 		// TODO Auto-generated method stub
-
 		return "Error Listener";
 
 	}

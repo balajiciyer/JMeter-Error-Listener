@@ -20,11 +20,14 @@ package mindtree.jmeterplugin;
 
 import java.io.File;
 import java.io.Serializable;
+import java.rmi.RemoteException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.jmeter.engine.event.LoopIterationEvent;
+import org.apache.jmeter.samplers.RemoteSampleListener;
 import org.apache.jmeter.samplers.SampleEvent;
 import org.apache.jmeter.samplers.SampleListener;
 import org.apache.jmeter.samplers.SampleResult;
@@ -104,6 +107,21 @@ public class ErrorListener extends AbstractTestElement implements Serializable, 
 		super();
 	}
 
+	private static void initialize() {
+		flag=false;
+		directoryCreated=false;
+		headersCreated=false;
+		updateAllowed=false;
+		PropertyCount=0;
+		Arrays.fill(ErrorListenerGui.propertyHeaderArray,null);
+		synchronized (PropertyFileSampleMap) {
+			PropertyFileSampleMap.clear();}
+		synchronized (ErrorFileSampleMap) {
+			ErrorFileSampleMap.clear();}
+		reportPath="ErrorListener"+"_"+"TimeStamp-"+GetTimeStampInHMS()+"_"+GetTimeStampInMs()+"\\";
+		propertyPath="_TimeStamp-"+GetTimeStampInHMS()+"_"+GetTimeStampInMs();
+	}
+
 	/**
 	 * Constructor for use during startup (intended for non-GUI use) @param name
 	 * of summariser
@@ -111,7 +129,6 @@ public class ErrorListener extends AbstractTestElement implements Serializable, 
 	public ErrorListener(String name) {
 		this();
 		setName(name);
-
 	}
 
 	/**
@@ -232,7 +249,7 @@ public class ErrorListener extends AbstractTestElement implements Serializable, 
 	 * Get the current timestamp in human readable format
 	 * 
 	 */
-	private String GetTimeStampInHMS() {
+	private static String GetTimeStampInHMS() {
 
 		long epoch = System.currentTimeMillis()/1000;
 		String date = new java.text.SimpleDateFormat("dd-MM-yyyy_HH-mm-ss").format(new java.util.Date (epoch*1000));
@@ -244,7 +261,7 @@ public class ErrorListener extends AbstractTestElement implements Serializable, 
 	 * Get the current timestamp in milliseconds
 	 * 
 	 */
-	private long GetTimeStampInMs() {
+	private static long GetTimeStampInMs() {
 		return System.currentTimeMillis();
 	}
 
@@ -257,7 +274,7 @@ public class ErrorListener extends AbstractTestElement implements Serializable, 
 	 * {@inheritDoc}
 	 */
 	public void sampleStarted(SampleEvent e) {
-		// not used
+		
 	}
 
 	/**
@@ -267,37 +284,39 @@ public class ErrorListener extends AbstractTestElement implements Serializable, 
 		// not used
 	}
 
-	/** {@inheritDoc} */
-	public void testEnded() {	
+	@Override
+	public void testEnded() {
 		updateAllowed=true;
 	}
 
-	/** {@inheritDoc} */
+	@Override
 	public void testEnded(String arg0) {
-		// not used
+		updateAllowed=true;
 	}
 
+	@Override
 	public void testIterationStart(LoopIterationEvent arg0) {
-		// not used
+		// TODO Auto-generated method stub
 	}
 
+	@Override
 	public void testStarted() {
-		// Initialize the properties prior to test run
-		flag=false;
-		directoryCreated=false;
-		headersCreated=false;
-		updateAllowed=false;
-		PropertyCount=0;
-		Arrays.fill(ErrorListenerGui.propertyHeaderArray,null);
-		synchronized (PropertyFileSampleMap) {
-			PropertyFileSampleMap.clear();}
-		synchronized (ErrorFileSampleMap) {
-			ErrorFileSampleMap.clear();}
-		reportPath="ErrorListener"+"_"+"TimeStamp-"+GetTimeStampInHMS()+"_"+GetTimeStampInMs()+"\\";
-		propertyPath="_TimeStamp-"+GetTimeStampInHMS()+"_"+GetTimeStampInMs();
+		System.out.println("Error Listener Initialized");
+		initialize();
+		
 	}
 
+	@Override
 	public void testStarted(String arg0) {
-		// not used
-	}    
+	System.out.println("Error Listener Initialized");
+	initialize();
+		
+	}
+
+	/*@Override
+	public void processBatch(List<SampleEvent> arg0) throws RemoteException {
+		// TODO Auto-generated method stub
+	}*/
 }
+
+
