@@ -115,7 +115,7 @@ public class ErrorListener extends AbstractTestElement implements Serializable, 
 			PropertyFileSampleMap.clear();}
 		synchronized (ErrorFileSampleMap) {
 			ErrorFileSampleMap.clear();}
-		reportPath="ErrorListener"+"_"+"TimeStamp-"+GetTimeStampInHMS()+"_"+GetTimeStampInMs()+"\\";
+		reportPath="ErrorListener"+"_"+"TimeStamp-"+GetTimeStampInHMS()+"_"+GetTimeStampInMs()+File.separator;
 		propertyPath="_TimeStamp-"+GetTimeStampInHMS()+"_"+GetTimeStampInMs();
 	}
 
@@ -181,9 +181,9 @@ public class ErrorListener extends AbstractTestElement implements Serializable, 
 
 					/** Construct the directory path to store the error and property data*/
 					StringBuilder sb = new StringBuilder(ErrorListener.BASEPATH);
-					if(!ErrorListener.BASEPATH.endsWith("\\"))
+					if(!ErrorListener.BASEPATH.endsWith(File.separator))
 					{
-						sb.append("\\");    		    	
+						sb.append(File.separator);    		    	
 					}
 					BASEPATH=sb.append(reportPath).toString();
 					PROPFILE=BASEPATH+PROPFILE+propertyPath+propertyFileExtension;
